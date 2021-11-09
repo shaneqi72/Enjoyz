@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_09_052400) do
+ActiveRecord::Schema.define(version: 2021_11_09_060154) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,7 +21,56 @@ ActiveRecord::Schema.define(version: 2021_11_09_052400) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "propery_types", force: :cascade do |t|
+  create_table "profiles", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.string "first_name"
+    t.string "last_name"
+    t.integer "contact_number"
+    t.string "role"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_profiles_on_user_id"
+  end
+
+  create_table "properties", force: :cascade do |t|
+    t.bigint "property_type_id", null: false
+    t.bigint "property_location_id", null: false
+    t.string "name"
+    t.text "description"
+    t.integer "bedroom_count"
+    t.integer "bed_count"
+    t.integer "bathroom_count"
+    t.boolean "availability"
+    t.date "start_date"
+    t.date "end_date"
+    t.integer "nightly_price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["property_location_id"], name: "index_properties_on_property_location_id"
+    t.index ["property_type_id"], name: "index_properties_on_property_type_id"
+  end
+
+  create_table "property_amenities", force: :cascade do |t|
+    t.bigint "property_id", null: false
+    t.bigint "amenity_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["amenity_id"], name: "index_property_amenities_on_amenity_id"
+    t.index ["property_id"], name: "index_property_amenities_on_property_id"
+  end
+
+  create_table "property_locations", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "suburb_postcode_id", null: false
+    t.integer "street_number"
+    t.string "street_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["suburb_postcode_id"], name: "index_property_locations_on_suburb_postcode_id"
+    t.index ["user_id"], name: "index_property_locations_on_user_id"
+  end
+
+  create_table "property_types", force: :cascade do |t|
     t.string "type"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -47,4 +96,11 @@ ActiveRecord::Schema.define(version: 2021_11_09_052400) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "profiles", "users"
+  add_foreign_key "properties", "property_locations"
+  add_foreign_key "properties", "property_types"
+  add_foreign_key "property_amenities", "amenities"
+  add_foreign_key "property_amenities", "properties"
+  add_foreign_key "property_locations", "suburb_postcodes"
+  add_foreign_key "property_locations", "users"
 end

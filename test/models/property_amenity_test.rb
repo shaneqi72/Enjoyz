@@ -1,6 +1,6 @@
 require "test_helper"
 
-class PropertyTypeTest < ActiveSupport::TestCase
+class PropertyAmenityTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end
