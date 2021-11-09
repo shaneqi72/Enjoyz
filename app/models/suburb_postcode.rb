@@ -1,0 +1,2 @@
+class SuburbPostcode < ApplicationRecord
+end
