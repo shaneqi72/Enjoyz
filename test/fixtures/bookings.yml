@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  traveller: one
+  host: one
+  property: one
+  check_in_date: 2021-11-10
+  check_out_date: 2021-11-10
+  adult_count: 1
+  child_count: 1
+
+two:
+  traveller: two
+  host: two
+  property: two
+  check_in_date: 2021-11-10
+  check_out_date: 2021-11-10
+  adult_count: 1
+  child_count: 1
