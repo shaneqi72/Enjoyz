@@ -15,6 +15,15 @@ ActiveRecord::Schema.define(version: 2021_11_11_101241) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
+  create_table "addresses", force: :cascade do |t|
+    t.integer "postcode"
+    t.string "suburb"
+    t.integer "street_number"
+    t.string "street_name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "amenities", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -23,7 +32,6 @@ ActiveRecord::Schema.define(version: 2021_11_11_101241) do
 
   create_table "bookings", force: :cascade do |t|
     t.bigint "traveller_id", null: false
-    t.bigint "host_id", null: false
     t.bigint "property_id", null: false
     t.date "check_in_date"
     t.date "check_out_date"
@@ -31,37 +39,25 @@ ActiveRecord::Schema.define(version: 2021_11_11_101241) do
     t.integer "child_count"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["host_id"], name: "index_bookings_on_host_id"
     t.index ["property_id"], name: "index_bookings_on_property_id"
     t.index ["traveller_id"], name: "index_bookings_on_traveller_id"
   end
 
-  create_table "profiles", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "first_name"
-    t.string "last_name"
-    t.integer "contact_number"
-    t.string "role"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_profiles_on_user_id"
-  end
-
   create_table "properties", force: :cascade do |t|
     t.bigint "property_type_id", null: false
-    t.bigint "property_location_id", null: false
+    t.bigint "address_id", null: false
+    t.bigint "owner_id", null: false
     t.string "name"
     t.text "description"
     t.integer "bedroom_count"
     t.integer "bed_count"
     t.integer "bathroom_count"
     t.boolean "availability"
-    t.date "start_date"
-    t.date "end_date"
-    t.integer "nightly_price"
+    t.decimal "price", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["property_location_id"], name: "index_properties_on_property_location_id"
+    t.index ["address_id"], name: "index_properties_on_address_id"
+    t.index ["owner_id"], name: "index_properties_on_owner_id"
     t.index ["property_type_id"], name: "index_properties_on_property_type_id"
   end
 
@@ -72,17 +68,6 @@ ActiveRecord::Schema.define(version: 2021_11_11_101241) do
     t.datetime "updated_at", precision: 6, null: false
     t.index ["amenity_id"], name: "index_property_amenities_on_amenity_id"
     t.index ["property_id"], name: "index_property_amenities_on_property_id"
-  end
-
-  create_table "property_locations", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.bigint "suburb_postcode_id", null: false
-    t.integer "street_number"
-    t.string "street_name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["suburb_postcode_id"], name: "index_property_locations_on_suburb_postcode_id"
-    t.index ["user_id"], name: "index_property_locations_on_user_id"
   end
 
   create_table "property_types", force: :cascade do |t|
@@ -101,18 +86,12 @@ ActiveRecord::Schema.define(version: 2021_11_11_101241) do
     t.index ["resource_type", "resource_id"], name: "index_roles_on_resource"
   end
 
-  create_table "suburb_postcodes", force: :cascade do |t|
-    t.integer "postcode"
-    t.string "suburb"
-    t.string "city"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.string "state"
-  end
-
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
+    t.integer "role", null: false
+    t.string "first_name"
+    t.string "last_name"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
@@ -131,13 +110,10 @@ ActiveRecord::Schema.define(version: 2021_11_11_101241) do
   end
 
   add_foreign_key "bookings", "properties"
-  add_foreign_key "bookings", "users", column: "host_id"
   add_foreign_key "bookings", "users", column: "traveller_id"
-  add_foreign_key "profiles", "users"
-  add_foreign_key "properties", "property_locations"
+  add_foreign_key "properties", "addresses"
   add_foreign_key "properties", "property_types"
+  add_foreign_key "properties", "users", column: "owner_id"
   add_foreign_key "property_amenities", "amenities"
   add_foreign_key "property_amenities", "properties"
-  add_foreign_key "property_locations", "suburb_postcodes"
-  add_foreign_key "property_locations", "users"
 end

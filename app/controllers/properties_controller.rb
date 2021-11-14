@@ -1,5 +1,10 @@
 class PropertiesController < ApplicationController
   def index
+    @properties = []
+    current_user.property_locations.each do |property_location|
+      @properties << property_location.property
+    end
+    return @properties
   end
 
   def new
@@ -18,19 +23,27 @@ class PropertiesController < ApplicationController
   end
 
   def show
+    set_property
   end
 
   def destroy
+    set_property
     @property.destroy
     redirect_to properties_path
   end
 
   def update
-    @property.update(property_params)
-    redirect_to @property
+    set_property
+    if @property.update(property_params)
+      redirect_to @property
+    else
+      flash.now[:errors] = @property.errors.full_messages
+      render :edit
+    end
   end
 
   def edit
+    set_property
   end
 
   private
@@ -40,6 +53,6 @@ class PropertiesController < ApplicationController
   end
 
   def set_property
-    @property = Property.find(params[:id])
+    @property = current_user.property_locations.find(params[:id]).property
   end
 end

@@ -1,15 +1,15 @@
 <%= simple_form_for @property do |f|%>
     <p>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
     </p>
     <p>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
+        <%= f.label :description %>
+        <%= f.text_field :description %>
     </p>
     <p>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
+        <%= f.label :property_type %>
+        <%= f.collection_select :property_type_id, @property_types, :id, :name %>
     </p>
     <p>
         <%= f.label :title %>
