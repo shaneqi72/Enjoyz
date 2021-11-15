@@ -1,5 +1,5 @@
 class User < ApplicationRecord
-  # after_crate: set_role
+  after_create :set_role
   rolify
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
@@ -13,6 +13,8 @@ class User < ApplicationRecord
   has_many :booking_received, class_name: "Booking", foreign_key: :property_id, dependent: :destroy
 
   def set_role
-    self.add_role(:user) if self.roles.blank?
+    self.add_role(:user) if :role === 0
+    self.add_role(:host) if :role === 1
+
   end
 end
