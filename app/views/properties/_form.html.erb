@@ -1,18 +1,19 @@
 <%= simple_form_for @property do |f|%>
-    <p>
-        <%= f.label :name %>
-        <%= f.text_field :name %>
-    </p>
-    <p>
-        <%= f.label :description %>
-        <%= f.text_field :description %>
-    </p>
-    <p>
-        <%= f.label :property_type %>
-        <%= f.collection_select :property_type_id, @property_types, :id, :name %>
-    </p>
-    <p>
-        <%= f.label :title %>
-        <%= f.text_field :title %>
-    </p>
+    <%= f.input :name, label: 'Please make a name to your listing property:', error: 'Property name is mandatory, please specify one'%>
+    <%= f.input :property_type_id, label: 'Please choose one of property types: House, Town House, Unit, Campsite', error: 'Property type is mandatory, please choose one', collection: @property_types%>
+    <%= f.input :description, label: 'Please give the best description to your property:', error: 'Description is mandatory, please provide one'%>
+
+    <%= f.input :bedroom_count, label: 'How many bedrooms:', collection: 1..8%>
+    <%= f.input :bed_count, label: 'How many beds:', error: 'Please provide number of available beds', collection: 1..15%>
+    <%= f.input :bathroom_count, label: 'How many bathrooms:', error: 'Please provide available bathroom number', collection: 1..5%>
+    <%= f.input :availability, label: 'Is the property available to listing now?', error: 'Is your property available now?', collection: [[1, 'Yes'], [0, 'No']], label_method: :second, value_method: :first %>
+    <%= f.input :price, label: 'Daily rent price:', hint: '* Numbers only',error: 'Please specify daily rent price'%>
+ 
+    <%= f.simple_fields_for :address do |a| %>
+        <%= a.input :postcode, label: 'Postcode', error: 'Postcode is mandatory, please specify one'%>
+        <%= a.input :suburb, label: 'Suburb', error: 'Suburb is mandatory, please specify one'%>
+        <%= a.input :street_number, label: 'Street number', error: 'Street number is mandatory, please specify one'%>
+        <%= a.input :street_name, label: 'Street name', error: 'Street name is mandatory, please specify one'%>
+    <% end %>
+    <%= f.button :submit %>
 <% end %>
