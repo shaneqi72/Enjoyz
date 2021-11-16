@@ -63,6 +63,12 @@ gem 'bootstrap', '~> 5.1.3'
 
 gem 'jquery-rails'
 
-gem 'rolify'
+gem "rolify", "~> 6.0"
 
-gem 'pundit'
+gem "pundit", "~> 2.1"
+
+gem "cloudinary", "~> 1.21"
+
+gem "activestorage-cloudinary-service", "~> 0.2.3"
+
+gem "dotenv-rails", "~> 2.7"

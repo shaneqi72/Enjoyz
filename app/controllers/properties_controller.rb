@@ -1,4 +1,7 @@
 class PropertiesController < ApplicationController
+  before_action :authenticate_user!
+  before_action :check_auth
+
   def index
     # @properties = []
     # current_user.properties.each do |property|
@@ -72,6 +75,10 @@ class PropertiesController < ApplicationController
   # end
 
   def set_property
-    @property = current_user.property_locations.find(params[:id]).property
+    @property = current_user.properties.find(params[:id])
+  end
+
+  def check_auth
+    authorize Property
   end
 end

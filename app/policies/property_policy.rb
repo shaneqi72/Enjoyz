@@ -17,7 +17,7 @@ class PropertyPolicy
   end
 
   def create?
-    user.has_role?(:admin)
+    user.has_role?(:host)
   end
 
   def new?
@@ -25,7 +25,7 @@ class PropertyPolicy
   end
 
   def update?
-    user.has_any_role?(:admin, :editor)
+    user.has_any_role?(:host)
   end
 
   def edit?
