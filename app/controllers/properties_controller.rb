@@ -1,6 +1,6 @@
 class PropertiesController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_all_properties
+  before_action :set_all_properties, only: [:index]
   before_action :check_auth, except: [:create, :new]
   before_action :set_property, only: [:update, :edit, :show, :destroy]
 
