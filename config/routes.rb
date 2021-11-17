@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'pages/index'
+  get 'pages/about'
   resources :properties
   # post "/properties/new", to: "properties#create"
   devise_for :user

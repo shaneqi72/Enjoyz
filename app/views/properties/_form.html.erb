@@ -8,12 +8,12 @@
     <%= f.input :bathroom_count, label: 'How many bathrooms:', error: 'Please provide available bathroom number', collection: 1..5%>
     <%= f.input :availability, label: 'Is the property available to listing now?', error: 'Is your property available now?', collection: [[1, 'Yes'], [0, 'No']], label_method: :second, value_method: :first %>
     <%= f.input :price, label: 'Daily rent price:', hint: '* Numbers only',error: 'Please specify daily rent price'%>
- 
+    <%= f.input_field :property_images, label: "Please upload property images", as: :file, required: true %>
     <%= f.simple_fields_for :address do |a| %>
         <%= a.input :postcode, label: 'Postcode', error: 'Postcode is mandatory, please specify one'%>
         <%= a.input :suburb, label: 'Suburb', error: 'Suburb is mandatory, please specify one'%>
         <%= a.input :street_number, label: 'Street number', error: 'Street number is mandatory, please specify one'%>
         <%= a.input :street_name, label: 'Street name', error: 'Street name is mandatory, please specify one'%>
     <% end %>
-    <%= f.button caption %>
+    <%= f.button :submit %>
 <% end %>

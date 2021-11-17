@@ -25,7 +25,7 @@ class PropertyPolicy
   end
 
   def update?
-    user.has_any_role?(:host)
+    user.has_role?(:host)
   end
 
   def edit?

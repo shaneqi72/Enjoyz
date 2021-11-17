@@ -1,40 +1,18 @@
 <h2>Sign up</h2>
 
 <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <!-- <%= render "devise/shared/error_messages", resource: resource %> -->
+  <%= render "devise/shared/error_messages", resource: resource %>
   <%= f.error_notification %>
   <div class="form-inputs">
-    <div class="field">
-      <%= f.label :email %><br />
-      <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-    </div>
-    <div class="field">
-      <%= f.label :first_name %><br />
-      <%= f.text_field :first_name, autocomplete: "off" %>
-    </div>
-
-    <div class="field">
-      <%= f.label :last_name %><br />
-      <%= f.text_field :last_name, autocomplete: "off" %>
-    </div>
-
+    <%= f.input :email, label: 'Email:'%>
+    <%= f.input :first_name, label: 'First Name:'%>
+    <%= f.input :last_name, label: 'Last Name:'%>
     <div class="field">
       <%= f.label :role, "Register as host?"  %><br />
       <%= f.check_box :role  %>
     </div>
-  
-    <div class="field">
-      <%= f.label :password %>
-      <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em>
-      <% end %><br />
-      <%= f.password_field :password, autocomplete: "new-password" %>
-    </div>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <%= f.input :password, label: 'Password:', input_html: { minlength: 6 }, hint: 'Minium 6 characters'%>
+    <%= f.button :submit%>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
