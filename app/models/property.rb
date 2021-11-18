@@ -8,7 +8,7 @@ class Property < ApplicationRecord
 
   accepts_nested_attributes_for :address
 
-  has_many_attached :property_images
+  has_one_attached :property_image
 
   has_many :property_amenities, dependent: :destroy
   has_many :amenities, through: :property_amenities

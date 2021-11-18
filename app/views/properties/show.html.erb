@@ -1,6 +1,4 @@
-<% @property.property_images.each do |image| %>
-    <%= image_tag image, width: 150%>
-<% end %>
+<%= cl_image_tag @property.property_image.url, width: 150 %>
 <h1><%= @property.name %></h1>
 <h5><%= "#{@property.address.street_number} #{@property.address.street_name} #{@property.address.suburb} #{@property.address.postcode}"%></h5>
 <p><%= @property.description%></p>
@@ -13,7 +11,7 @@
 <p>
     <%= link_to "Back to listing", properties_path, class: "btn btn-primary" %>
     <% if policy(@property).update?%>
-        <%= link_to "Edit", edit_property_path(@property) %>
+    <%= link_to "Edit", edit_property_path(@property), class: "btn btn-secondary"  %>
     <% else %>
         <%= link_to "Booking" %>
     <% end %>

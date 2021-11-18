@@ -1,7 +1,7 @@
 class PropertiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_all_properties, only: [:index]
-  before_action :check_auth, except: [:create, :new]
+  before_action :check_auth
   before_action :set_property, only: [:update, :edit, :show, :destroy]
 
   def index
@@ -43,12 +43,13 @@ class PropertiesController < ApplicationController
   end
 
   def edit
+    @property_types = PropertyType.all
   end
 
   private
 
   def property_params
-    params.require(:property).permit(:name, :description, :property_type_id, :owner_id, :bedroom_count, :bed_count, :bathroom_count, :availability, :price, :property_image ,address_attributes: [:postcode, :suburb, :street_number, :street_name] )
+    params.require(:property).permit(:name, :description, :property_type_id, :owner_id, :bedroom_count, :bed_count, :bathroom_count, :availability, :price, :property_image, address_attributes: [:postcode, :suburb, :street_number, :street_name] )
   end
 
   def set_property

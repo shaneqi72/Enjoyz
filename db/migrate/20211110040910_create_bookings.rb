@@ -5,6 +5,7 @@ class CreateBookings < ActiveRecord::Migration[6.1]
       t.references :property, null: false, foreign_key: true
       t.date :check_in_date
       t.date :check_out_date
+      # t.bool :approved
       t.integer :adult_count
       t.integer :child_count
 
