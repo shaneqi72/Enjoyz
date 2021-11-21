@@ -1,0 +1,7 @@
+<h1>Your bookings</h1>
+<p>this is all your bookings</p>
+<% @bookings.each do |booking|%>
+    <p><%= booking.property.name%></p>
+    <p><%= booking.property.description%></p>
+    <p><%= booking.property.price%></p>
+<% end %>
