@@ -5,7 +5,11 @@ class PropertyPolicy
 
   def initialize(user, record)
     @user = user
-    @record = record
+    @property = record
+  end
+
+  def my_properties?
+    user.has_role? :host
   end
 
   def index?
@@ -25,7 +29,9 @@ class PropertyPolicy
   end
 
   def update?
-    user.has_role?(:host)
+    # only the owner of this @property can update or edit
+    # user.has_role?(:host) && user.properties.find(@property.id) # throw error if none founnd
+    user.properties.find_by(id: @property.id) # return nil if none found
   end
 
   def edit?

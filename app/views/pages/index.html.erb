@@ -26,8 +26,7 @@
               <p>Price: $<%= property.price%></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <%= link_to 'View',  class: "btn btn-sm btn-outline-secondary" %>
-                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                  <%= link_to 'View', property_path(property.id), class: "btn btn-sm btn-outline-secondary" %>
                   <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                 </div>
                 <small class="text-muted">9 mins</small>
