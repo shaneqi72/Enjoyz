@@ -1,10 +1,6 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
 #
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
 
 Property.destroy_all
 Amenity.destroy_all
@@ -20,14 +16,14 @@ Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, stre
 Address.create!([{ postcode: 4455, suburb: 'Roma', street_number: 19, street_name: 'Highly Road' }])
 Address.create!([{ postcode: 4470, suburb: 'Charieville', street_number: 4, street_name: 'Dan Street' }])
 Address.create!([{ postcode: 4350, suburb: 'Toowoomba', street_number: 30, street_name: 'Manning Street' }])
-# Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
-# Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
-# Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
-# Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
-# Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
-# Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
-# Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
-# Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
+Address.create!([{ postcode: 3422, suburb: 'Lichfield', street_number: 67, street_name: 'william Place' }])
+Address.create!([{ postcode: 2620, suburb: 'Hume', street_number: 34, street_name: 'DERRICK STREET' }])
+Address.create!([{ postcode: 4564, suburb: 'Elsternwick', street_number: 5, street_name: 'Wivenhoe Place' }])
+Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Jenkins Street' }])
+Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
+Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
+Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
+Address.create!([{ postcode: 4564, suburb: 'Twin Waters', street_number: 5, street_name: 'Wivenhoe Place' }])
 
 PropertyType.create!([{ name: 'House' }, { name: 'Town House' }, { name: 'Unit' }, { name: 'Campsite' }])
 

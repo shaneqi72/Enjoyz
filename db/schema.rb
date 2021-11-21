@@ -61,10 +61,7 @@ ActiveRecord::Schema.define(version: 2021_11_15_111750) do
   create_table "bookings", force: :cascade do |t|
     t.bigint "traveller_id", null: false
     t.bigint "property_id", null: false
-    t.date "check_in_date"
-    t.date "check_out_date"
-    t.integer "adult_count"
-    t.integer "child_count"
+    t.integer "accepted"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["property_id"], name: "index_bookings_on_property_id"
