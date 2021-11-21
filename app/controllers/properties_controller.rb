@@ -1,10 +1,16 @@
 class PropertiesController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: %i[index show]
   before_action :set_all_properties, only: [:index]
-  before_action :check_auth
-  before_action :set_property, only: [:update, :edit, :show, :destroy]
+  before_action :set_property, only: %i[update edit destroy show]
+  before_action :check_auth, except: %i[index show]
 
+  # get /properties
   def index
+    @properties = Property.includes(:bookings).all
+  end
+
+  def my_properties
+    @properties = Property.includes(:bookings).where(owner_id: current_user.id)
   end
 
   def new
@@ -19,14 +25,13 @@ class PropertiesController < ApplicationController
     begin
       @property.save!
       redirect_to properties_path
-    rescue
+    rescue StandardError
       flash.now[:errors] = @property.errors.messages.values.flatten
       render 'new'
     end
   end
 
-  def show
-  end
+  def show; end
 
   def destroy
     @property.destroy
@@ -49,18 +54,19 @@ class PropertiesController < ApplicationController
   private
 
   def property_params
-    params.require(:property).permit(:name, :description, :property_type_id, :owner_id, :bedroom_count, :bed_count, :bathroom_count, :availability, :price, :property_image, address_attributes: [:postcode, :suburb, :street_number, :street_name] )
+    params.require(:property).permit(:name, :description, :property_type_id, :owner_id, :bedroom_count, :bed_count,
+                                     :bathroom_count, :availability, :price, :property_image, address_attributes: %i[postcode suburb street_number street_name])
   end
 
   def set_property
-    @property = current_user.properties.find(params[:id])
+    @property = Property.find(params[:id])
   end
 
   def set_all_properties
-    @properties = current_user.properties
+    # @properties = current_user.properties
   end
 
   def check_auth
-    authorize Property
+    authorize @property || Property
   end
 end
