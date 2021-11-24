@@ -1,8 +1,10 @@
-// get /properties
 <h1>All Properties</h1>
-<% @properties.each do |property|%>
-    <div class="card" style="width: 18rem;">
+<div class="container">
+    <div class='row'>
+    <% @properties.each do |property|%>
+    <div class="card" >
         <div class="card-body">
+            <%= cl_image_tag property.property_image.key, width: 255, class: 'card'  %>
             <h5 class="card-title"><%= property.name %></h5>
             <h6 class="card-title"><%= "#{property.address.street_number} #{property.address.street_name} #{property.address.suburb} #{property.address.postcode}" %></h6>
             <p class="card-text"><%= property.description %></p>
@@ -12,8 +14,11 @@
     <% if user_signed_in? %>
         <% if property.owner_id == current_user.id %>
             <% property.bookings.each do |booking| %>
-                <%= booking.inspect %>
+
             <% end %>
         <% end %>
     <% end %> 
 <% end %>
+    </div>
+</div>
+

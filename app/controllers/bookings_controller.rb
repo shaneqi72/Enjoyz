@@ -24,12 +24,12 @@ class BookingsController < ApplicationController
   def show; end
 
   def update
-    if @booking.update(booking_params)
-      redirect_to @booking
-    else
-      flash.now[:errors] = @booking.errors.full_messages
-      render :edit
-    end
+    # if @booking.update(booking_params)
+    #   redirect_to @booking
+    # else
+    #   flash.now[:errors] = @booking.errors.full_messages
+    #   render :edit
+    # end
   end
 
   def edit; end
@@ -50,6 +50,6 @@ class BookingsController < ApplicationController
   end
 
   def check_auth
-    authorize @booking || Booking
+    authorize Booking
   end
 end

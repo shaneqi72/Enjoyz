@@ -20,7 +20,7 @@
           <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <% if current_user.role == 1 %>
               <%= link_to 'Listing New Property', new_property_path, class: "dropdown-item"%>
-              <%= link_to 'My Listed Property', properties_path, class: "dropdown-item"%>
+              <%= link_to 'My Listed Property', my_properties_path, class: "dropdown-item"%>
               <%= link_to 'My Bookings', bookings_path, class: "dropdown-item"%> 
             <% else %>
               <%= link_to 'My Bookings', new_property_path, class: "dropdown-item"%> 

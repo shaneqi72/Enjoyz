@@ -1,10 +1,7 @@
 class PagesController < ApplicationController
-
   def index
-   @properties = Property.all
+    @properties = Property.all
   end
-  
-  def about
-  
-  end
+
+  def about; end
 end

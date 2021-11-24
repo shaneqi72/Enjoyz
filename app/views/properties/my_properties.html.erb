@@ -1,19 +1,26 @@
-// get /properties
 <h1>My Properties</h1>
-<% @properties.each do |property|%>
-    <div class="card" style="width: 18rem;">
-        <div class="card-body">
-            <h5 class="card-title"><%= property.name %></h5>
-            <h6 class="card-title"><%= "#{property.address.street_number} #{property.address.street_name} #{property.address.suburb} #{property.address.postcode}" %></h6>
-            <p class="card-text"><%= property.description %></p>
-            <%= link_to "More Info...", property, class: "btn btn-primary"%>
-        </div>
-    </div>
-    <% if user_signed_in? %>
-        <% if property.owner_id == current_user.id %>
-            <% property.bookings.each do |booking| %>
-                <%= booking.inspect %>
+<div class='container'>
+    <div class='row'>
+        <% @properties.each do |property|%>
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h5 class="card-title"><%= property.name %></h5>
+                <h6 class="card-title"><%= "#{property.address.street_number} #{property.address.street_name} #{property.address.suburb} #{property.address.postcode}" %></h6>
+                <p class="card-text"><%= property.description %></p>
+                <%= link_to "More Info...", property, class: "btn btn-secondary"%>
+        <% if user_signed_in? %>
+            <% if property.owner_id == current_user.id %>
+                <% property.bookings.each do |booking| %>
+                    <% if booking.accepted == 0 %>
+                        <div>
+                            <p> <%= booking.traveller.first_name%> booked your property <%= link_to 'Accept' %> <%= link_to 'Deny'%> </p>
+                        </div>
+                    <% end %>
+                <% end %>
             <% end %>
-        <% end %>
-    <% end %> 
-<% end %>
+        <% end %> 
+            </div>
+        </div>
+    <% end %>
+    </div>
+</div>

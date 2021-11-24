@@ -1,7 +1,15 @@
 <h1>Your bookings</h1>
-<p>this is all your bookings</p>
 <% @bookings.each do |booking|%>
     <p><%= booking.property.name%></p>
     <p><%= booking.property.description%></p>
     <p><%= booking.property.price%></p>
+    <% if booking.accepted == 0 %>
+    <p>Your booking is pending, waiting for host approval </p>
+    <% elsif booking.accepted == 1 %>
+    <p>Your booking is confirmed and accepted by host</p>
+    <% else %>
+    <p>Unfortunately, your booking is not accepted by host. There are more options for you. Please choose another property alternatively<p>
+    <% end %>
 <% end %>
+
+
