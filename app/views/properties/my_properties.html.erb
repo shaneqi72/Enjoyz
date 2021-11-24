@@ -1,5 +1,8 @@
-<h1>My Properties</h1>
-<div class='container'>
+<% if @properties.length == 0 %>
+    <h1>You have no property for listing yet.</h1>
+<% else %>
+    <h1>My Listed Properties</h1>
+    <div class='container'>
     <div class='row'>
         <% @properties.each do |property|%>
         <div class="card" style="width: 18rem;">
@@ -10,17 +13,17 @@
                 <%= link_to "More Info...", property, class: "btn btn-secondary"%>
         <% if user_signed_in? %>
             <% if property.owner_id == current_user.id %>
-                <% property.bookings.each do |booking| %>
-                    <% if booking.accepted == 0 %>
-                        <div>
-                            <p> <%= booking.traveller.first_name%> booked your property <%= link_to 'Accept' %> <%= link_to 'Deny'%> </p>
-                        </div>
+                <% if property.has_pending? %>
+                        <p> Pending bookings - click more details to see</p>
                     <% end %>
                 <% end %>
             <% end %>
-        <% end %> 
+
             </div>
         </div>
     <% end %>
     </div>
 </div>
+
+<% end %>
+

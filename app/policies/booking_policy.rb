@@ -1,40 +1,46 @@
 class BookingPolicy
-    attr_reader :user, :record
+  attr_reader :user, :record
 
-    def initialize(user, record)
-        @user = user
-        @record = record
-    end
+  def initialize(user, record)
+    @user = user
+    @booking = record
+  end
 
-    def index?
-        true
-    end
+  def index?
+    true
+  end
 
-    def show?
-        true
-    end
+  def approve?
+    return true if @user == @booking.property.owner
+  end
 
-    def create?
-      user.has_any_role?(:user, :host)
-    end
+  def deny?
+    return true if @user == @booking.property.owner
+  end
 
-    def new?
-        create?
-    end
+  def show?
+    true
+  end
 
-    def update?
-        user.has_any_role?(:host, :user)
-    end
+  def create?
+    user.has_any_role?(:user, :host)
+  end
 
-    def edit?
-        update?
-    end
+  def new?
+    create?
+  end
 
-    def destroy?
-        create?
-    end
+  def update?; end
 
-    class Scope
+  def edit?
+    update?
+  end
+
+  def destroy?
+    create?
+  end
+
+  class Scope
     def initialize(user, scope)
       @user = user
       @scope = scope
@@ -48,5 +54,4 @@ class BookingPolicy
 
     attr_reader :user, :scope
   end
-
 end

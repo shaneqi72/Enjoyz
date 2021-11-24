@@ -14,7 +14,9 @@ class Property < ApplicationRecord
   has_many :amenities, through: :property_amenities
   has_many :bookings, dependent: :destroy
 
-  def amenity_exist
-    # errors.add(:base, 'amenity must exist') if
+  def amenity_exist; end
+
+  def has_pending_bookings?
+    return true if bookings.find_by(accepted: 0)
   end
 end

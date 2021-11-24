@@ -1,7 +1,7 @@
 #### Identification of the problem you are trying to solve by building this particular marketplace app.
 Due to more and more young people leaving from small towns where they grown up to big city for either higher education or seeking more job opportunities, lots of properties or rooms in rural areas been vacant and managed by their parents or relatives. Thus, this platform for those who are willing to post their rooms or entire property for listing and gain extra income.
 
-For travellers, there are more property location choices to compare with. They can use this platform to booking property or rooms which they like. One of the benefit for traveller is that most of listing properties rent price will be lower than local hotel or motel. 
+For travellers, there have more property location choices to compare with. They can use this platform to booking property or rooms which they like. One of the benefit for traveller is that most of listing properties rent price will be lower than local hotel or motel. 
 
 #### Why is it a problem that needs solving?
 In australia, there are many small towns or rural areas which have very limited hotels or no hotel for traveller stay. 
@@ -47,6 +47,13 @@ https://github.com/shaneqi72/Enjoyz
 - Github
 
 #### Describe your projects models in terms of the relationships (active record associations) they have with each other
+Models Associations
+- Address has one and only one Property, Property belongs to Address.
+- PropertyType has zero or many Properties, Property belongs to PropertyType.
+- Amenity has many or zero Properties through join table Property_Amenities, Amenity has many Property_Amenities.
+- Property has many Property_Amenities, Property has zero or many Amenities through Property_Amenities. 
+- Booking belongs to Property, Property has many Bookings.
+- User has one
 
 
 #### Discuss the database relations to be implemented in your application
