@@ -1,7 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :set_booking, only: %i[update edit show destroy]
-  before_action :check_auth, except: %i[deny approve]
+  before_action :check_auth, except: [:deny, :approve]
 
   def index
     @bookings = current_user.booking_created
@@ -21,16 +20,6 @@ class BookingsController < ApplicationController
     redirect_to bookings_path
   end
 
-  def show; end
-
-  def update
-    # if @booking.update(booking_params)
-    #   redirect_to @booking
-    # else
-    #   flash.now[:errors] = @booking.errors.full_messages
-    #   render :edit
-    # end
-  end
 
   def approve
     @booking = Booking.find(params[:id])
@@ -53,9 +42,8 @@ class BookingsController < ApplicationController
     #                           })
   end
 
-  def edit; end
-
   def destroy
+    @booking = current_user.booking_created.find(params[:id])
     @booking.destroy
     redirect_to bookings_path
   end
@@ -64,10 +52,6 @@ class BookingsController < ApplicationController
 
   def booking_params
     # params.require(:booking).permit(:traveller_id, :property_id, :accepted)
-  end
-
-  def set_booking
-    @booking = current_user.bookings.find(params[:id])
   end
 
   def check_auth

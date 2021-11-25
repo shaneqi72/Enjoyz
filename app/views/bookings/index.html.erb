@@ -9,6 +9,7 @@
     <p>Your booking is confirmed and accepted by host</p>
     <% else %>
     <p>Unfortunately, your booking is not accepted by host. There are more options for you. Please choose another property alternatively<p>
+    <%= link_to 'Remove message', booking_path(booking.id) , method: :delete %>
     <% end %>
 <% end %>
 
