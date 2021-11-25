@@ -4,7 +4,7 @@ class Property < ApplicationRecord
 
   belongs_to :owner, class_name: "User", foreign_key: :owner_id
   belongs_to :property_type, foreign_key: :property_type_id
-  belongs_to :address, dependent: :destroy
+  belongs_to :address
 
   accepts_nested_attributes_for :address
 

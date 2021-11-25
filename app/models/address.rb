@@ -1,6 +1,6 @@
 class Address < ApplicationRecord
   validates :postcode, :suburb, :street_name, :street_number, presence: true
-  has_one :property
+  has_one :property, dependent: :destroy
 
   validates :postcode, uniqueness: {
     scope: %i[suburb street_number street_name],
