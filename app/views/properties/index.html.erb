@@ -1,19 +1,19 @@
 <h1>All Properties</h1>
 <div class="container">
     <div class='row'>
-    <% @properties.each do |property|%>
-    <div class="row featurette border mb-4 d-flex">
-      <div class="col-md-5 p-3">
-        <%= cl_image_tag property.property_image.key, width: 420, class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto'  %>
-      </div>
-      <div class="col-md-7 pt-5 align-items-center justify-content-center">
-        <h5 class="card-title"><%= property.name %></h5>
+      <% @properties.each do |property|%>
+        <div class="row featurette border mb-4 d-flex">
+          <div class="col-md-5 p-3">
+            <%= cl_image_tag property.property_image.key, width: 420, class: 'bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto'  %>
+          </div>
+          <div class="col-md-7 pt-5 align-items-center justify-content-center">
+            <h5 class="card-title"><%= property.name %></h5>
             <h6 class="card-title"><%= "#{property.address.street_number} #{property.address.street_name} #{property.address.suburb} #{property.address.postcode}" %></h6>
             <p class="card-text"><%= property.description %></p>
             <%= link_to "More Info...", property, class: "btn btn-primary"%>
+          </div>
         </div>
-    </div>
-    <% end %>
+      <% end %>
     </div>
 </div>
 

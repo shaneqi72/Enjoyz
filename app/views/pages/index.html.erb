@@ -7,33 +7,33 @@
         <%= link_to 'Our Stories', pages_about_path, class: "btn btn-outline-secondary btn-lg px-4"%>
       </div>
     </div>
-  </div>
+</div>
 
 <div class="album py-5 bg-light">
   <div class="container">
       <div class="row">
-    <% @properties.each do |property|%>
-        <div class="col-md-4">
-          <div class="card mb-4 box-shadow" style="min-height: 40rem">
-            <%= cl_image_tag property.property_image.url, width: "100%", height: "280rem", class: "card-img-top" %>
-            <div class="card-body">
-              <p class="card-text"><%= property.name%></p>
-              <p class="card-text"><%= property.description.truncate(100)%></p>
-              <p><%= "#{property.address.street_number} #{property.address.street_name} #{property.address.suburb}" %></p>
-              <p>Bedroom(s): <%= property.bedroom_count%></p>
-              <p>Bed(s): <%= property.bed_count%></p>
-              <p>Bathroom(s): <%= property.bathroom_count%></p>
-              <p>Price: $<%= property.price%></p>
-              <div class="d-flex justify-content-between align-items-center">
-                <div class="btn-group">
-                  <%= link_to 'View', property_path(property.id), class: "btn btn-sm btn-outline-secondary" %>
+        <% @properties.each do |property|%>
+          <div class="col-md-4">
+            <div class="card mb-4 box-shadow" style="min-height: 40rem">
+              <%= cl_image_tag property.property_image.url, width: "100%", height: "280rem", class: "card-img-top" %>
+              <div class="card-body">
+                <p class="card-text"><%= property.name%></p>
+                <p class="card-text"><%= property.description.truncate(100)%></p>
+                <p><%= "#{property.address.street_number} #{property.address.street_name} #{property.address.suburb}" %></p>
+                <p>Bedroom(s): <%= property.bedroom_count%></p>
+                <p>Bed(s): <%= property.bed_count%></p>
+                <p>Bathroom(s): <%= property.bathroom_count%></p>
+                <p>Price: $<%= property.price%></p>
+                <div class="d-flex justify-content-between align-items-center">
+                  <div class="btn-group">
+                    <%= link_to 'View', property_path(property.id), class: "btn btn-sm btn-outline-secondary" %>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-    <% end %>
+        <% end %>
+      </div>
     </div>
-  </div>
 </div>
 

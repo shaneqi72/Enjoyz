@@ -1,6 +1,6 @@
 class BookingsController < ApplicationController
   before_action :authenticate_user!
-  before_action :check_auth, except: [:deny, :approve]
+  before_action :check_auth, except: %i[deny approve]
 
   def index
     @bookings = current_user.booking_created
@@ -20,7 +20,6 @@ class BookingsController < ApplicationController
     redirect_to bookings_path
   end
 
-
   def approve
     @booking = Booking.find(params[:id])
     authorize @booking
@@ -35,11 +34,6 @@ class BookingsController < ApplicationController
     authorize @booking
     @booking.update(accepted: 2)
     redirect_to @booking.property
-    # @booking = Booking.update({
-    #                             property_id: params[:id],
-    #                             traveller_id: current_user.id,
-    #                             accepted: 2
-    #                           })
   end
 
   def destroy
@@ -49,10 +43,6 @@ class BookingsController < ApplicationController
   end
 
   private
-
-  def booking_params
-    # params.require(:booking).permit(:traveller_id, :property_id, :accepted)
-  end
 
   def check_auth
     authorize @booking || Booking

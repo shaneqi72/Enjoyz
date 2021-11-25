@@ -30,12 +30,6 @@ class BookingPolicy
     create?
   end
 
-  def update?; end
-
-  def edit?
-    update?
-  end
-
   def destroy?
     create?
   end

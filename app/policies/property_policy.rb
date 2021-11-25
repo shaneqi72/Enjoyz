@@ -27,9 +27,8 @@ class PropertyPolicy
   end
 
   def update?
-    # only the owner of this @property can update or edit
-    # user.has_role?(:host) && user.properties.find(@property.id) # throw error if none founnd
-    user.properties.find_by(id: @property.id) # return nil if none found
+    user.properties.find(@property.id)
+    user.properties.find_by(id: @property.id)
   end
 
   def edit?

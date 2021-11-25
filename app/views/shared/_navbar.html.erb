@@ -13,33 +13,32 @@
           <%= link_to 'About Us', pages_about_path, class: "nav-link"%>
         </li>
         <% if user_signed_in? %>
-       <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            My Profile
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <% if current_user.role == 1 %>
-              <%= link_to 'Listing New Property', new_property_path, class: "dropdown-item"%>
-              <%= link_to 'My Listed Property', my_properties_path, class: "dropdown-item"%>
-              <%= link_to 'My Bookings', bookings_path, class: "dropdown-item"%> 
-            <% else %>
-              <%= link_to 'My Bookings', new_property_path, class: "dropdown-item"%> 
-            <% end %>
-          </ul>
-        </li>
-        <li class="nav-item">
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              My Profile
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+              <% if current_user.role == 1 %>
+                <%= link_to 'Listing New Property', new_property_path, class: "dropdown-item"%>
+                <%= link_to 'My Listed Property', my_properties_path, class: "dropdown-item"%>
+                <%= link_to 'My Bookings', bookings_path, class: "dropdown-item"%> 
+              <% else %>
+                <%= link_to 'My Bookings', new_property_path, class: "dropdown-item"%> 
+              <% end %>
+            </ul>
+          </li>
+          <li class="nav-item">
             <%= link_to 'Log Out', destroy_user_session_path, method: :delete, class: "nav-link"%>
-        </li>
+          </li>
         <% else %>
           <li class="nav-item">
             <%= link_to 'Sign In', new_user_session_path, class: "nav-link"%>
           </li>
-        <li class="nav-item">
-          <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link"%>
-        </li>
+          <li class="nav-item">
+            <%= link_to 'Sign Up', new_user_registration_path, class: "nav-link"%>
+          </li>
         <% end %>
       </ul>
- 
     </div>
   </div>
 </nav>
