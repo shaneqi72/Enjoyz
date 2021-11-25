@@ -1,7 +1,3 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-
 Property.destroy_all
 Amenity.destroy_all
 Booking.destroy_all
@@ -40,7 +36,7 @@ User.create!([{ email: '233232@outlook.com', password: '123456', role: 1, first_
 User.create!([{ email: '1212@outlook.com', password: '123456', role: 1, first_name: 'Xue', last_name: 'White' }])
 User.create!([{ email: '2323@outlook.com', password: '123456', role: 1, first_name: 'Tomas', last_name: 'Car' }])
 
-Property.create!([{ name: 'Loved place', description: 'Fully stocked', property_type: PropertyType.last,
+Property.create!([{ name: 'Loved place', description: 'Presenting opulent, resort-style living in a highly desired location, this astonishing residence is sure to take your breath away.', property_type: PropertyType.last,
                     owner: User.last, address: Address.first, bedroom_count: 2, bed_count: 2, bathroom_count: 2, availability: true, price: 50, property_image: { io: File.open(Rails.root.join('app/assets/images/c1.jpg')), filename: 'c1.jpg' } }])
 Property.create!([{ name: 'Resort-style living', description: 'Presenting opulent, resort-style living in a highly desired location, this astonishing residence is sure to take your breath away.', property_type: PropertyType.last,
                     owner: User.last, address: Address.all[1], bedroom_count: 2, bed_count: 2, bathroom_count: 2, availability: true, price: 50, property_image: { io: File.open(Rails.root.join('app/assets/images/c2.jpg')), filename: 'c2.jpg' } }])

@@ -13,7 +13,7 @@
                 <%= link_to "More Info...", property, class: "btn btn-secondary"%>
         <% if user_signed_in? %>
             <% if property.owner_id == current_user.id %>
-                <% if property.has_pending? %>
+                <% if property.has_pending_bookings? %>
                         <p> Pending bookings - click more details to see</p>
                     <% end %>
                 <% end %>
